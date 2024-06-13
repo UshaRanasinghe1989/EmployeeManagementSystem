@@ -1,10 +1,7 @@
 package edu.icet.emp.employeecontroller;
 
 import edu.icet.emp.dto.Employee;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +12,12 @@ public class EmployeeController {
     List<Employee> list = new ArrayList<>();
 
     @PostMapping("add-employee")
-    boolean persist(@RequestBody Employee employee){
+    public boolean persist(@RequestBody Employee employee){
         return list.add(employee);
+    }
+
+    @GetMapping("get-all")
+    public List<Employee> getAll(){
+        return list;
     }
 }
