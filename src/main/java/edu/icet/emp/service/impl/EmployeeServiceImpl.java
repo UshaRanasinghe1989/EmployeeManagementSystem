@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
-    Iterable<EmployeeEntity> list = new ArrayList<>();
 
     final EmployeeRepository repository;
     final ObjectMapper mapper;
