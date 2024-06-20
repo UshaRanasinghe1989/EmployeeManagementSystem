@@ -11,4 +11,6 @@ public interface EmployeeService {
     void deleteById(Long id);
 
     void updateEmployee(Employee employee);
+
+    Employee findByFirstName(String firstName);
 }

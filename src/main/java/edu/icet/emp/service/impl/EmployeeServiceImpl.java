@@ -7,6 +7,7 @@ import edu.icet.emp.entity.EmployeeEntity;
 import edu.icet.emp.repository.EmployeeRepository;
 import edu.icet.emp.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
     final EmployeeRepository repository;
@@ -37,15 +39,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteById(Long id) {
-        if (repository.existsById(Math.toIntExact(id))){
-            repository.deleteById(Math.toIntExact(id));
+        if (repository.existsById(id)){
+            repository.deleteById(id);
         }
     }
 
     @Override
     public void updateEmployee(Employee employee) {
-        if (repository.findById(employee.getId()).isPresent()){
+        if (repository.findById((long) employee.getId()).isPresent()){
             repository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
         }
+    }
+
+    @Override
+    public Employee findByFirstName(String firstName) {
+        return new ObjectMapper().convertValue(repository.findByFirstName(firstName), Employee.class);
     }
 }

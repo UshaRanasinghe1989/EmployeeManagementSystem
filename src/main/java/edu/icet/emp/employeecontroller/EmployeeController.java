@@ -39,4 +39,9 @@ public class EmployeeController {
         employeeService.deleteById(id);
         return "Deleted";
     }
+
+    @GetMapping("/find-by-firstName/{firstName}")
+    public Employee findByFirstName(@PathVariable String firstName){
+        return employeeService.findByFirstName(firstName);
+    }
 }
