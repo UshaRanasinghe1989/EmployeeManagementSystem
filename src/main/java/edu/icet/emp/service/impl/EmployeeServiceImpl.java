@@ -41,4 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             repository.deleteById(Math.toIntExact(id));
         }
     }
+
+    @Override
+    public void updateEmployee(Employee employee) {
+        if (repository.findById(employee.getId()).isPresent()){
+            repository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
+        }
+    }
 }

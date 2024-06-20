@@ -27,6 +27,12 @@ public class EmployeeController {
         return employeeService.retrieveAll();
     }
 
+    @PostMapping("/update-employee")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updateEmployee(@RequestBody Employee employee){
+        employeeService.updateEmployee(employee);
+    }
+
     @DeleteMapping("delete-emp/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String deleteEmployee(@PathVariable Long id){
