@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.icet.emp.dto.Employee;
 import edu.icet.emp.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class EmployeeController {
     final ObjectMapper mapper;
 
     @PostMapping("add-employee")
+    @ResponseStatus(HttpStatus.CREATED)
     public Employee persist(@RequestBody Employee employee){
         return employeeService.persist(employee);
     }
@@ -23,5 +25,12 @@ public class EmployeeController {
     @GetMapping("get-all")
     public List<Employee> getAll(){
         return employeeService.retrieveAll();
+    }
+
+    @DeleteMapping("delete-emp/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public String deleteEmployee(@PathVariable Long id){
+        employeeService.deleteById(id);
+        return "Deleted";
     }
 }

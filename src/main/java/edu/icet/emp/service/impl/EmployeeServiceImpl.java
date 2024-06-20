@@ -34,4 +34,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         });
         return employeeList;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        if (repository.existsById(Math.toIntExact(id))){
+            repository.deleteById(Math.toIntExact(id));
+        }
+    }
 }
