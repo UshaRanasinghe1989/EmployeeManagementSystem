@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/emp-controller")
 @RequiredArgsConstructor
+@CrossOrigin
 public class EmployeeController {
     final EmployeeService employeeService;
     final ObjectMapper mapper;
@@ -38,6 +39,11 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable Long id){
         employeeService.deleteById(id);
         return "Deleted";
+    }
+
+    @GetMapping("/find-by-id/{id}")
+    public Employee findById(@PathVariable Long id){
+        return employeeService.findById(id);
     }
 
     @GetMapping("/find-by-firstName/{firstName}")

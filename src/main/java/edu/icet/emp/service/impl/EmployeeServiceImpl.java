@@ -22,8 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     final ObjectMapper mapper;
     @Override
     public Employee persist(Employee dto) {
-        EmployeeEntity savedEmployee = mapper.convertValue(dto, EmployeeEntity.class);
-        return mapper.convertValue(savedEmployee, Employee.class);
+        EmployeeEntity entity = mapper.convertValue(dto, EmployeeEntity.class);
+        return mapper.convertValue(repository.save(entity), Employee.class);
     }
 
     @Override
@@ -47,8 +47,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(Employee employee) {
         if (repository.findById((long) employee.getId()).isPresent()){
-            repository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
+            repository.save(mapper.convertValue(employee, EmployeeEntity.class));
         }
+    }
+
+    @Override
+    public Employee findById(Long id) {
+        return mapper.convertValue(repository.findById(id), Employee.class);
     }
 
     @Override
