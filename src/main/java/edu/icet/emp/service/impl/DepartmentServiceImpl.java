@@ -29,4 +29,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         });
         return departmentList;
     }
+
+    @Override
+    public boolean delete(Long id) {
+        repository.deleteById(id);
+        return true;
+    }
 }

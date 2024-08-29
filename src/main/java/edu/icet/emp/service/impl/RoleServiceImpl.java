@@ -29,4 +29,10 @@ public class RoleServiceImpl implements RoleService {
         });
         return roleList;
     }
+
+    @Override
+    public boolean delete(Long id) {
+        repository.deleteById(id);
+        return true;
+    }
 }

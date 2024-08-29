@@ -22,4 +22,9 @@ public class DepartmentController {
     public List<Department> retrieve(){
         return service.retrieve();
     }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id){
+        return service.delete(id);
+    }
 }

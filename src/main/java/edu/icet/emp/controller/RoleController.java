@@ -13,7 +13,7 @@ import java.util.List;
 public class RoleController {
     private final RoleService service;
 
-    @PostMapping("")
+    @PostMapping
     public void persist(@RequestBody Role role){
         service.addRole(role);
     }
@@ -21,5 +21,10 @@ public class RoleController {
     @GetMapping
     public List<Role> retrieve(){
         return service.retrieve();
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Long id){
+        return service.delete(id);
     }
 }

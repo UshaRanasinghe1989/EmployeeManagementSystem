@@ -8,4 +8,6 @@ public interface RoleService {
     void addRole(Role role);
 
     List<Role> retrieve();
+
+    boolean delete(Long id);
 }
