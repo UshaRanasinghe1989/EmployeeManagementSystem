@@ -1,4 +1,4 @@
-package edu.icet.emp.employeecontroller;
+package edu.icet.emp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.icet.emp.dto.Employee;
